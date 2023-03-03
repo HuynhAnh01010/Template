@@ -1,0 +1,10 @@
+server:
+    servlet:
+        context-path: /hs
+    port: 8081
+    
+#spring:
+#    thymeleaf:
+#        prefix: classpath:/templates/
+#        suffix: .html
+    

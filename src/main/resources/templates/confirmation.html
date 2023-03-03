@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>GIẤY XÁC NHẬN THÔNG TIN | DK02</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" th:href="@{/resources/statics/css/style.css}" href="statics/css/style.css"/>
+        <link rel="shortcut icon" th:href="@{/resources/statics/images/iconsim.png}"/>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        <script type="text/javascript" th:src="@{/resources/statics/js/jquery-3.6.0.js}" src="resources/statics/js/jquery-3.6.0.js"></script>
+        <script type="text/javascript" th:src="@{/resources/statics/js/jquery-3.6.0.min.js}" src="resources/statics/js/jquery-3.6.0.min.js"></script>
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+        <!--<link rel="stylesheet" href="/resources/demos/style.css"/>-->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <link rel="stylesheet" type="text/css" th:href="@{/resources/statics/css/daterangepicker.css}"/>
+        <script type="text/javascript" th:src="@{/resources/statics/js/daterangepicker.js}"></script>
+    </head>
+    <body>
+        <div>
+            <header id="header">
+                <div class="header container">
+                    <ul class="header-ul">
+                        <li class="header-li"><a th:href="@{./personal}" href="./personal.html" class="header-link" th:class="${personal}">DK01</a></li>
+                        <li class="header-li"><a th:href="@{./confirmation}" href="./confirmation.html" class="header-link" th:class="${confirmation}">DK02</a></li>
+                        <li class="header-li"><a th:href="@{./revision-paper}" href="./certificate.html" class="header-link" th:class="${certificate}">DK03</a></li>
+                        <!--<li class="header-li"><a th:href="@{./}" href="./" class="header-link" >Tìm cty theo MST</a></li>-->
+                    </ul>
+                </div>
+            </header>
+            <div id="div-confirmation">
+                <div class="container">
+                    <form action="" id="frm" name="frm">
+                        <div class="confirmation-header-title input-groups">
+                            <h4>GIẤY XÁC NHẬN THÔNG TIN KIÊM BIÊN BẢN BÀN GIAO</h4>
+                        </div>
+                        <div class="confirmation-header-title input-groups">
+                            <h4>CHỨNG THƯ SỐ I-CA</h4>
+                            <br/>
+                        </div>
+                        <div class="confirmation-search" style="padding-left: 8px; padding-bottom: 20px;">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="input-groups">
+                                        <div>
+                                            <label class="person-search-title">Tìm theo MST/Mã đơn vị/Mã ngân sách:</label>
+                                        </div>
+                                        <div class="input-group" style="padding-right: 15px;">
+                                            <input type="text" id="taxCodeSearch" class="form-control input-text" />
+                                        </div>
+                                        <div class="btn-groups">
+                                            <button type="button" onclick="searchTaxCode();" class="btn btn-primary" style="white-space: nowrap;">Tìm kiếm</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="confirmation-body">
+                            <div class="container">
+                                <div class="col-md-5 input-groups">
+                                    <div class="input-group">
+                                        Hôm nay, ngày <input type="text" style="padding-top: 0;" name="daterangerpicker" class="form-control input-text" id="cf_Ngay" /> , chúng tôi gồm:
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups">
+                                    <div>
+                                        <label class=""><strong>Bên A: </strong></label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-text" id="KH_KhachHang" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups">
+                                    <div>
+                                        <label class="">Mã số thuế/Mã đơn vị/Mã ngân sách:</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-text" id="KH_MaSoThue" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups">
+                                    <div>
+                                        <label class="">Địa chỉ khách hàng: </label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-text" id="KH_DiaChi" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups">
+                                    <div>
+                                        <label class="">Số điện thoại:</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-text" id="KH_SDT" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 input-groups">
+                                    <div>
+                                        <label class="">Họ tên người đại diện:</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-text" id="KH_HoTen" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 input-groups">
+                                    <div>
+                                        <label class="">Chức vụ:</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-text" id="KH_ChucVu" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups">
+                                    <div>
+                                        <label class=""><strong>Bên B. Nhà cung cấp dịch vụ: CÔNG TY CỔ PHẦN ICORP</strong></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups">
+                                    <div>
+                                        <label class="">Mã số thuế: 0106870211</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups">
+                                    <div>
+                                        <label class="">Địa chỉ: Số 32/21 Trương Công Giai, Cầu Giấy, Hà Nội.</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups">
+                                    <div>
+                                        <label class="">Hotline: 1900 0099</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 input-groups">
+                                    <div>
+                                        <label class="">Người đại diện: <strong>Trần Văn Tùng</strong></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 input-groups">
+                                    <div>
+                                        <label class="">Chức vụ: <strong>Tổng giám đốc</strong></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups">
+                                    <div>
+                                        Bên A kiểm tra và xác nhận thông tin của các chứng thư số do bên B cấp phát là hoàn toàn trùng khớp với thông tin do bên A yêu cầu. Hai bên đồng ý ký biên bản xác nhận về việc bên B đã hoàn thành việc cấp phát chứng thư số I-CA cho bên A và bên A có thể sử dụng chứng thư số được cấp với các nội dung cụ thể như sau:
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="padding-left: 2rem;">
+                                    <div class="col-md-12 input-groups">
+                                        <div>
+                                            <label class="">1.Series chứng thư số:</label>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control input-text" id="series_CTS" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 input-groups">
+                                        <div>
+                                            <label class="">2.Subject DN:</label>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control input-text" id="Subject_DN" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 input-groups">
+                                        <div>
+                                            <label class="">3.Issuer DN:</label>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control input-text" id="Issuer_DN" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 input-groups">
+                                        <div>
+                                            <label class="">4.Thiết bị phần cứng chứa khoá bí mật của thuê bao</label>
+                                        </div>
+<!--                                        <div class="input-group">
+                                            <input type="text" class="form-control input-text" id="ThietBiPhanCung" />
+                                        </div>-->
+                                    </div>
+                                    <div class="col-md-12 input-groups">
+                                        <div>
+                                            <label class="">5.Thời hạn sử dụng:</label>
+                                        </div>
+                                        <div class="input-group">
+                                            <input id="ThoiHanSuDung" name="daterangerpicker" type="text" class="form-control input-text "/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 input-groups">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>Sau khi nghiệm thu dịch vụ và kiểm tra đảm bảo chứng thư có thể sử dụng tốt. Bên B tiến hành bàn giao chứng thư số I-CA cho Bên A tại thời điểm hai bên ký kết vào biên bản này.</p>
+                                    <p>Bên A có trách nhiệm quản lý và sử dụng, bàn giao cho người quản lý chứng thư số theo đúng quy định thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="container confirmation-footer">
+                            <div class="confirmation-footer-items">
+                                <div class="row container">
+                                    <div class="dis-flex-center">
+                                        <div class="btn-group btn-05">
+                                            <button class="btn btn-primary btn-150" type="button" onclick="reload();">Làm lại</button>
+                                        </div>
+                                        <div class="btn-group btn-05">
+                                            <button class="btn btn-primary btn-150" type="button" onclick="sendConfirInfoXslt();">Xem và in</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="container" style="padding-top: 100px; font-size: 10px; line-height: 10px; text-align: justify;">
+                        <div class="col-md-12" style="padding: 0 .75rem;">
+                            <tr >
+                                <td >
+                                    <p style="padding-bottom: 10px;font-weight:bold;">
+                                        <i>Quyền và nghĩa vụ của khách hàng sử dụng dịch vụ chứng thực chữ ký số I-CA:</i>
+                                    </p>
+                                    <p >
+                                        <i>- Khách hàng có nghĩa vụ cung cấp thông tin về nhân thân của mình và thông tin về Tổ chức/Doanh nghiệp một cách trung thực, chính xác và xuất trình các giấy tờ phục vụ cho việc cấp chứng thư số cho Nhà cung cấp (NCC); tự chịu trách nhiệm trước pháp luật và thiệt hại xảy ra nếu vi phạm quy định này.</i>
+                                    </p>
+                                    <p>
+                                        <i>- Lưu trữ và sử dụng khóa bí mật của mình một cách an toàn, bí mật trong suốt thời gian chứng thư số của mình có hiệu lực và bị tạm dừng. </i>
+                                    </p>
+                                    <p>
+                                        <i>- Thông báo ngay cho Nhà cung cấp nếu phát hiện thấy dấu hiệu khóa bí mật của mình đã bị lộ, bị đánh cắp hoặc sử dụng trái phép để có các biện pháp xử lý.</i>
+                                    </p> 
+                                    <p>
+                                        <i>- Cam kết với người nhận thông tin được ký số rằng thuê bao là người nắm giữ hợp pháp khóa bí mật tương ứng với khóa công khai trên chứng thư số đó và những thông tin trên chứng thư số liên quan đến thuê bao là đúng sự thật, đồng thời phải thực hiện các nghĩa vụ xuất phát từ chứng thư số đó. </i>
+                                    </p>
+                                    <p>
+                                        <i>- Có quyền yêu cầu NCC tạm dừng, thu hồi chứng thư số đã cấp và tự chịu trách nhiệm về yêu cầu đó. </i>
+                                    </p>
+                                    <p>
+                                        <i>- Cung cấp khóa và những thông tin cần thiết cho các cơ quan nhà nước có thẩm quyền để phục vụ việc điều tra tội phạm theo quy định của pháp luật.</i>
+                                    </p>
+                                    <p>
+                                        <i>- Chịu trách nhiệm trước pháp luật về mọi thiệt hại xảy ra nếu vi phạm các quy định trên.</i>
+                                    </p>
+                                </td>
+                            </tr>
+                        </div>
+                    </div>
+                    <div class="container" style="padding-top: 300px; font-size: 10px; line-height: 10px; text-align: justify;"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <script type="text/javascript" th:src="@{/resources/statics/js/main.js}" src="statics/js/main.js"></script>
+        <script type="text/javascript" th:src="@{/resources/statics/js/checkbox.js}" src="statics/js/checkbox.js"></script>
+    </body>
+</html>

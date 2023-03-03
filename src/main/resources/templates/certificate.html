@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>PHIẾU YÊU CẦU THAY ĐỔI THÔNG TIN CHỨNG THƯ SỐ | DK03</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" th:href="@{/resources/statics/css/style.css}" href="statics/css/style.css"/>
+        <link rel="shortcut icon" th:href="@{/resources/statics/images/iconsim.png}"/>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        <script type="text/javascript" th:src="@{/resources/statics/js/jquery-3.6.0.js}" src="resources/statics/js/jquery-3.6.0.js"></script>
+        <script type="text/javascript" th:src="@{/resources/statics/js/jquery-3.6.0.min.js}" src="resources/statics/js/jquery-3.6.0.min.js"></script>
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+        <!--<link rel="stylesheet" href="/resources/demos/style.css"/>-->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <link rel="stylesheet" type="text/css" th:href="@{/resources/statics/css/daterangepicker.css}"/>
+        <script type="text/javascript" th:src="@{/resources/statics/js/daterangepicker.js}"></script>
+    </head>
+    <body>
+        <div>
+            <header id="header">
+                <div class="header container">
+                    <ul class="header-ul">
+                        <li class="header-li"><a th:href="@{./personal}" href="./personal.html" class="header-link" th:class="${personal}">DK01</a></li>
+                        <li class="header-li"><a th:href="@{./confirmation}" href="./confirmation.html" class="header-link" th:class="${confirmation}">DK02</a></li>
+                        <li class="header-li"><a th:href="@{./revision-paper}" href="./certificate.html" class="header-link" th:class="${certificate}">DK03</a></li>
+                        <!--<li class="header-li"><a th:href="@{./}" href="./" class="header-link" >Tìm cty theo MST</a></li>-->
+                    </ul>
+                </div>
+            </header>
+            <div id="div-certificate">
+                <div class="certi-body">
+                    <div class="container">
+                        <div class="certi-body-header input-groups">
+                            <h5>PHIẾU YÊU CẦU THAY ĐỔI THÔNG TIN CHỨNG THƯ SỐ</h5>
+                        </div>
+                        <div class="certificate-search" style="padding-left: 8px;">
+                            <div class="row">
+                                <div class="input-groups">
+                                    <div>
+                                        <label class="person-search-title">Tìm theo MST/Mã đơn vị/Mã ngân sách:</label>
+                                    </div>
+                                    <div class="input-group" style="padding-right: 15px;">
+                                        <input type="text" id="taxCodeSearch" class="form-control input-text" />
+                                    </div>
+                                    <div class="btn-groups">
+                                        <button type="button" onclick="searchTaxCode();" class="btn btn-primary" style="white-space: nowrap;">Tìm kiếm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certi-body-items">
+                            <form action="">
+                                <div class="input-groups">
+                                    Chúng tôi hiện là thuê bao đăng ký sử dụng dịch vụ chứng thực chữ ký số công cộng I-CA, với các thông tin như sau:
+                                </div>
+                                <div class="col-md-12 input-groups">
+                                    <div>
+                                        <label class=" ">Tên đầy đủ</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" th:value="${companyName}" class="form-control input-text" id="hoten" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups">
+                                    <div>
+                                        <label class=" ">Mã định danh doanh nghiệp (Khách hàng tổ chức/doanh nghiệp)</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" th:value="${taxCode}" class="form-control input-text" id="mst" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups">
+                                    <div>
+                                        <label class=" ">Mã định danh cá nhân</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-text" id="cmndhc" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups">
+                                    <div>
+                                        <label class=" ">Số Serial chứng thư</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-text" id="certSN" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups ">
+                                    <div>
+                                        <label class="">Chúng tôi đăng ký thay đổi thông tin trên chứng thư số I-CA với các thông tin như sau:</label>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 input-groups" style="display: block;">
+                                    <div class="certi-body-item-header" style="padding: 1rem 0;">
+                                        <h6 style="padding: 0 2rem;">I. Thông tin chứng thư số yêu cầu thay đổi:</h6>
+                                    </div>
+                                    <div class="certi-body-item-main">
+                                        <table class="col-md-12">
+                                            <tr>
+                                                <td class="col-md-6">Nội dung</td>
+                                                <td class="col-md-3">Thông tin hiện tại</td>
+                                                <td class="col-md-3">Thông tin thay đổi</td>
+                                            </tr>
+                                            <tr style="display: flex;float: left; width: 100%;">
+                                                <td class="col-md-6 dis-align-center">
+                                                    Tên khách hàng
+                                                </td>
+                                                <td class="col-md-3">
+                                                    <input type="text" class=" input-text" id="tenKHCu"/>
+                                                </td>
+                                                <td class="col-md-3">
+                                                    <input type="text" class=" input-text" id="tenKHMoi"/>
+                                                </td>
+                                            </tr>
+                                            <tr style="display: flex;float: left; width: 100%;">
+                                                <td class="col-md-6 dis-align-center">
+                                                    Địa chỉ
+                                                </td>
+                                                <td class="col-md-3">
+                                                    <input type="text" class=" input-text" id="diachiCu"/>
+                                                </td>
+                                                <td class="col-md-3">
+                                                    <input type="text" class=" input-text" id="diachiMoi"/>
+                                                </td>
+                                            </tr>
+                                            <tr style="display: flex;float: left; width: 100%;">
+                                                <td class="col-md-6 dis-align-center">
+                                                    Mã định danh cá nhân (dành cho cá nhân/cá nhân thuộc tổ chức)
+                                                </td>
+                                                <td class="col-md-3">
+                                                    <input type="text" class=" input-text" id="cmndHCCu"/>
+                                                </td>
+                                                <td class="col-md-3">
+                                                    <input type="text" class=" input-text" id="cmndHCMoi"/>
+                                                </td>
+                                            </tr>
+
+                                            <tr style="display: flex;float: left; width: 100%;">
+                                                <td class="col-md-6 dis-align-center">
+                                                    Thông tin khác
+                                                </td>
+                                                <td class="col-md-3">
+                                                    <input type="text" class=" input-text" id="khacCu"/>
+                                                </td>
+                                                <td class="col-md-3">
+                                                    <input type="text" class=" input-text" id="khacMoi"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 input-groups" style="display: block;">
+                                    <div class="certi-body-item-header" style="padding: 1rem 0;">
+                                        <h6 style="padding: 0 2rem;">II. Thông tin liên hệ:</h6>
+                                    </div>
+                                    <div class="certi-body-item-main">
+                                        <div class="col-md-6 input-groups" style="padding: 0;">
+                                            <div>
+                                                <label class=" ">1.Họ và tên:</label>
+                                            </div>
+                                            <div class="input-group" style="padding-right: 2rem;">
+                                                <input type="text" th:value="${presentativeName}" class="form-control input-text" id="ttHoten" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="certi-body-item-main">
+                                        <div class="col-md-6 input-groups" style="padding: 0;">
+                                            <div>
+                                                <label class=" ">Chức vụ:</label>
+                                            </div>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control input-text" id="ttChucvu" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="certi-body-item-main">
+                                        <div class="col-md-6 input-groups" style="padding: 0;">
+                                            <div>
+                                                <label class=" ">2.Điện thoại:</label>
+                                            </div>
+                                            <div class="input-group" style="padding-right: 2rem;">
+                                                <input type="text" th:value="${SoDienThoai}" class="form-control input-text" id="ttSdt" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="certi-body-item-main">
+                                        <div class="col-md-6 input-groups" style="padding: 0;">
+                                            <div>
+                                                <label class=" ">Email:</label>
+                                            </div>
+                                            <div class="input-group">
+                                                <input type="email" th:value="${Email}" class="form-control input-text" id="ttEmail" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="certi-body-item-main">
+                                        <div class="col-md-12 input-groups" style="padding: 0;">
+                                            <div>
+                                                Chúng tôi đồng ý ủy quyền cho Nhà cung cấp thu hồi chứng thư số cũ và tạo cặp khóa chứng thư số mới theo thông tin yêu cầu thay đổi như trên, đồng thời cam kết các thông tin khai trong phiếu yêu cầu này là đúng sự thật và chịu hoàn toàn trách nhiệm đối với các thông tin này.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container confirmation-footer">
+                                    <div class="confirmation-footer-items">
+                                        <div class="row container">
+                                            <div class="dis-flex-center">
+                                                <div class="btn-group btn-05">
+                                                    <button class="btn btn-primary btn-150" type="button" onclick="reload();">Làm lại</button>
+                                                </div>
+                                                <div class="btn-group btn-05">
+                                                    <button class="btn btn-primary btn-150" type="button" onclick="sendCertiInfoXslt();">Xem và in</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script type="text/javascript" th:src="@{/resources/statics/js/main.js}" src="statics/js/main.js"></script>
+        <script type="text/javascript" th:src="@{/resources/statics/js/checkbox.js}" src="statics/js/checkbox.js"></script>
+    </body>
+</html>
